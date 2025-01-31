@@ -1,10 +1,8 @@
-package com.gerencimantodeprocessos.service;
+package com.gerencimentodeprocessos.service;
 
-import com.gerencimantodeprocessos.domain.sei.Sei;
-import com.gerencimantodeprocessos.domain.user.User;
-import com.gerencimantodeprocessos.dtos.SeiDTO;
-import com.gerencimantodeprocessos.dtos.UserDTO;
-import com.gerencimantodeprocessos.repositories.SeiRepository;
+import com.gerencimentodeprocessos.domain.sei.Sei;
+import com.gerencimentodeprocessos.dtos.SeiDTO;
+import com.gerencimentodeprocessos.repositories.SeiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

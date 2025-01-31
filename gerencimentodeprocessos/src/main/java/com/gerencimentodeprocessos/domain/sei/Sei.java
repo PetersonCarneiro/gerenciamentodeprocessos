@@ -1,11 +1,9 @@
-package com.gerencimantodeprocessos.domain.sei;
+package com.gerencimentodeprocessos.domain.sei;
 
-import com.gerencimantodeprocessos.domain.user.User;
-import com.gerencimantodeprocessos.dtos.SeiDTO;
+import com.gerencimentodeprocessos.domain.user.User;
+import com.gerencimentodeprocessos.dtos.SeiDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity(name = "seis")
 @Table(name = "seis")

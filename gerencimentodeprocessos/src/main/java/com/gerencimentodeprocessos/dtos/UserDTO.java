@@ -1,6 +1,6 @@
-package com.gerencimantodeprocessos.dtos;
+package com.gerencimentodeprocessos.dtos;
 
-import com.gerencimantodeprocessos.domain.user.UserType;
+import com.gerencimentodeprocessos.domain.user.UserType;
 
 public record UserDTO(String id, String firstName, String lastName, String login, String password, UserType userType) {
 }

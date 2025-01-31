@@ -1,8 +1,8 @@
-package com.gerencimantodeprocessos.service;
+package com.gerencimentodeprocessos.service;
 
-import com.gerencimantodeprocessos.domain.user.User;
-import com.gerencimantodeprocessos.dtos.UserDTO;
-import com.gerencimantodeprocessos.repositories.UserRepository;
+import com.gerencimentodeprocessos.domain.user.User;
+import com.gerencimentodeprocessos.dtos.UserDTO;
+import com.gerencimentodeprocessos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

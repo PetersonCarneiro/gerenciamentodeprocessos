@@ -1,8 +1,7 @@
-package com.gerencimantodeprocessos.controller;
+package com.gerencimentodeprocessos.controller;
 
-import com.gerencimantodeprocessos.dtos.SeiDTO;
-import com.gerencimantodeprocessos.dtos.UserDTO;
-import com.gerencimantodeprocessos.service.SeiService;
+import com.gerencimentodeprocessos.dtos.SeiDTO;
+import com.gerencimentodeprocessos.service.SeiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

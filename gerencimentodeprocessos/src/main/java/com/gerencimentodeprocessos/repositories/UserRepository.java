@@ -1,6 +1,6 @@
-package com.gerencimantodeprocessos.repositories;
+package com.gerencimentodeprocessos.repositories;
 
-import com.gerencimantodeprocessos.domain.user.User;
+import com.gerencimentodeprocessos.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

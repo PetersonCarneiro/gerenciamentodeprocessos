@@ -1,6 +1,6 @@
-package com.gerencimantodeprocessos.domain.user;
+package com.gerencimentodeprocessos.domain.user;
 
-import com.gerencimantodeprocessos.dtos.UserDTO;
+import com.gerencimentodeprocessos.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
