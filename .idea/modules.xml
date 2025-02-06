@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/gerenciamentodeprocessos.iml" filepath="$PROJECT_DIR$/.idea/gerenciamentodeprocessos.iml" />
       <module fileurl="file://$PROJECT_DIR$/gerencimantodeprocessos/gerencimantodeprocessos.iml" filepath="$PROJECT_DIR$/gerencimantodeprocessos/gerencimantodeprocessos.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/gerencimentodeprocessos.iml" filepath="$PROJECT_DIR$/.idea/gerencimentodeprocessos.iml" />
     </modules>
   </component>
 </project>

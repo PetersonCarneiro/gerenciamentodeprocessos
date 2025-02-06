@@ -1,14 +1,14 @@
-package com.gerencimentodeprocessos;
+package com.gerenciamentodeprocessos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GerencimentodeprocessosApplication {
+public class GerenciamentoDeProcessosApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(GerencimentodeprocessosApplication.class, args);
+		SpringApplication.run(GerenciamentoDeProcessosApplication.class, args);
 	}
 
 }
