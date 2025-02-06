@@ -1,8 +1,8 @@
-package com.gerencimentodeprocessos.service;
+package com.gerenciamentodeprocessos.service;
 
-import com.gerencimentodeprocessos.domain.user.User;
-import com.gerencimentodeprocessos.dtos.UserDTO;
-import com.gerencimentodeprocessos.repositories.UserRepository;
+import com.gerenciamentodeprocessos.domain.user.User;
+import com.gerenciamentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    //metedos para salvar,listar,atualizar e deletar
-    //também outras regras de negocio
+    //CRUD
 
     public UserDTO saveUser(UserDTO userDTO){
         User user = new User(userDTO);
@@ -79,4 +78,8 @@ public class UserService {
         userRepository.deleteById(id);
 
     }
+
+    //Regras de negocio
+
+
 }

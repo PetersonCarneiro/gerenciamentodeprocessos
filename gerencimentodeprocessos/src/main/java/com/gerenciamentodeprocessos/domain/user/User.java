@@ -1,8 +1,12 @@
-package com.gerencimentodeprocessos.domain.user;
+package com.gerenciamentodeprocessos.domain.user;
 
-import com.gerencimentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.domain.sei.Sei;
+import com.gerenciamentodeprocessos.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "users")
 @Table(name = "users")
@@ -18,6 +22,9 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Sei> seis = new ArrayList<>();
 
     public User(){
 

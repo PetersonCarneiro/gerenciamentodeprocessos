@@ -1,7 +1,7 @@
-package com.gerencimentodeprocessos.controller;
+package com.gerenciamentodeprocessos.controller;
 
-import com.gerencimentodeprocessos.dtos.UserDTO;
-import com.gerencimentodeprocessos.service.UserService;
+import com.gerenciamentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
