@@ -18,8 +18,19 @@ public class SeiService {
         Sei newSei = seiRepository.save(sei);
         return new SeiDTO(
                 newSei.getId(),
+                newSei.getCod(),
+                newSei.getRequestingUnit(),
+                newSei.getRequestingUnit(),
+                newSei.getInvestiment(),
+                newSei.getCodPdm(),
+                newSei.getCatmat(),
+                newSei.getCatser(),
+                newSei.getCodSubClassCnae(),
+                newSei.getDescriptionCnae(),
+                newSei.getObject(),
                 newSei.getNumberSei(),
                 newSei.getUser()
+
         );
 
     }
@@ -28,8 +39,19 @@ public class SeiService {
         return seiRepository.findAll().stream().map(sei ->
                 new SeiDTO(
                         sei.getId(),
+                        sei.getCod(),
+                        sei.getRequestingUnit(),
+                        sei.getRequestingUnit(),
+                        sei.getInvestiment(),
+                        sei.getCodPdm(),
+                        sei.getCatmat(),
+                        sei.getCatser(),
+                        sei.getCodSubClassCnae(),
+                        sei.getDescriptionCnae(),
+                        sei.getObject(),
                         sei.getNumberSei(),
-                        sei.getUser())
+                        sei.getUser()
+                )
         ).toList();
     }
 
@@ -37,6 +59,16 @@ public class SeiService {
         return seiRepository.findById(id).map(sei->
                 new SeiDTO(
                         sei.getId(),
+                        sei.getCod(),
+                        sei.getRequestingUnit(),
+                        sei.getRequestingUnit(),
+                        sei.getInvestiment(),
+                        sei.getCodPdm(),
+                        sei.getCatmat(),
+                        sei.getCatser(),
+                        sei.getCodSubClassCnae(),
+                        sei.getDescriptionCnae(),
+                        sei.getObject(),
                         sei.getNumberSei(),
                         sei.getUser()
                 )
@@ -51,8 +83,19 @@ public class SeiService {
             Sei updateSei = seiRepository.save(sei);
             return new SeiDTO(
                     updateSei.getId(),
+                    updateSei.getCod(),
+                    updateSei.getRequestingUnit(),
+                    updateSei.getRequestingUnit(),
+                    updateSei.getInvestiment(),
+                    updateSei.getCodPdm(),
+                    updateSei.getCatmat(),
+                    updateSei.getCatser(),
+                    updateSei.getCodSubClassCnae(),
+                    updateSei.getDescriptionCnae(),
+                    updateSei.getObject(),
                     updateSei.getNumberSei(),
-                    updateSei.getUser());
+                    updateSei.getUser()
+            );
         }).orElseThrow(()-> new RuntimeException("Sei not found"));
     }
 
@@ -67,6 +110,16 @@ public class SeiService {
                 map(sei->
                 new SeiDTO(
                         sei.getId(),
+                        sei.getCod(),
+                        sei.getRequestingUnit(),
+                        sei.getRequestingUnit(),
+                        sei.getInvestiment(),
+                        sei.getCodPdm(),
+                        sei.getCatmat(),
+                        sei.getCatser(),
+                        sei.getCodSubClassCnae(),
+                        sei.getDescriptionCnae(),
+                        sei.getObject(),
                         sei.getNumberSei(),
                         sei.getUser()
                 )

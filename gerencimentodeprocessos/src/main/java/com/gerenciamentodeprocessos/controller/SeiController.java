@@ -43,8 +43,4 @@ public class SeiController {
         return  seiService.findByNumberSei(numberSei);
     }
 
-
-
-
-
 }
