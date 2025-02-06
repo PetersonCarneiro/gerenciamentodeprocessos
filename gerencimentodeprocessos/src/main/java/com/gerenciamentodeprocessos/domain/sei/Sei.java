@@ -76,19 +76,19 @@ public class Sei {
     }
 
     public Sei(SeiDTO seiDTO){
-        this.id = id;
-        this.cod = cod;
-        this.competentUnit = competentUnit;
-        this.requestingUnit = requestingUnit;
-        this.investiment = investiment;
-        this.codPdm = codPdm;
-        this.catmat = catmat;
-        this.catser = catser;
-        this.codSubClassCnae = codSubClassCnae;
-        this.descriptionCnae = descriptionCnae;
-        this.object = object;
-        this.numberSei = numberSei;
-        this.user = user;
+        this.id = seiDTO.id();
+        this.cod = seiDTO.cod();
+        this.competentUnit = seiDTO.competentUnit();
+        this.requestingUnit = seiDTO.requestingUnit();
+        this.investiment = seiDTO.investiment();
+        this.codPdm = seiDTO.codPdm();
+        this.catmat = seiDTO.catmat();
+        this.catser = seiDTO.catser();
+        this.codSubClassCnae = seiDTO.codSubClassCnae();
+        this.descriptionCnae = seiDTO.descriptionCnae();
+        this.object = seiDTO.object();
+        this.numberSei = seiDTO.numberSei();
+        this.user = seiDTO.user();
     }
 
     public String getId() {

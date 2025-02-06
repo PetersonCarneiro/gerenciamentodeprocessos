@@ -17,4 +17,5 @@ public record SeiDTO (String id,
                       String numberSei,
                       User user){
 
+
 }
