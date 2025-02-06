@@ -1,8 +1,8 @@
-package com.gerencimentodeprocessos.service;
+package com.gerenciamentodeprocessos.service;
 
-import com.gerencimentodeprocessos.domain.sei.Sei;
-import com.gerencimentodeprocessos.dtos.SeiDTO;
-import com.gerencimentodeprocessos.repositories.SeiRepository;
+import com.gerenciamentodeprocessos.domain.sei.Sei;
+import com.gerenciamentodeprocessos.dtos.SeiDTO;
+import com.gerenciamentodeprocessos.repositories.SeiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class SeiService {
         ).toList();
     }
 
-    public Optional<SeiDTO> findByNumberSei(String id){
+    public Optional<SeiDTO> findById(String id){
         return seiRepository.findById(id).map(sei->
                 new SeiDTO(
                         sei.getId(),
@@ -58,6 +58,19 @@ public class SeiService {
 
     public void deleteSei(String id){
         seiRepository.deleteById(id);
+    }
+
+    //Regra de negócio
+
+    public List<SeiDTO> findByNumberSei(String numberSei){
+        return seiRepository.findByNumberSei(numberSei).stream().
+                map(sei->
+                new SeiDTO(
+                        sei.getId(),
+                        sei.getNumberSei(),
+                        sei.getUser()
+                )
+        ).toList();
     }
 
 }

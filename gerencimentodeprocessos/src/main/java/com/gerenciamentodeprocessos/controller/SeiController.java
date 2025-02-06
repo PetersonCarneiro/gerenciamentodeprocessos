@@ -1,7 +1,7 @@
-package com.gerencimentodeprocessos.controller;
+package com.gerenciamentodeprocessos.controller;
 
-import com.gerencimentodeprocessos.dtos.SeiDTO;
-import com.gerencimentodeprocessos.service.SeiService;
+import com.gerenciamentodeprocessos.dtos.SeiDTO;
+import com.gerenciamentodeprocessos.service.SeiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +25,22 @@ public class SeiController {
         return seiService.listSei();
     }
 
-    @GetMapping("/{id}")
-    public Optional<SeiDTO> findBySeiId(@PathVariable String id){
-        return seiService.findByNumberSei(id);
+    @GetMapping("/id/{id}")
+    public Optional<SeiDTO> findById(@PathVariable String id){
+        return seiService.findById(id);
     }
     @PutMapping("/{id}")
     public SeiDTO updateSei(@PathVariable String id,@RequestBody SeiDTO seiDto){
         return seiService.updateSei(id,seiDto);
     }
     @DeleteMapping("/{id}")
-    public void deleteSei(String id){
+    public void deleteSei(@PathVariable String id){
         seiService.deleteSei(id);
+    }
+
+    @GetMapping("/number/{numberSei}")
+    public List<SeiDTO> findByNumberSei(@PathVariable String numberSei){
+        return  seiService.findByNumberSei(numberSei);
     }
 
 

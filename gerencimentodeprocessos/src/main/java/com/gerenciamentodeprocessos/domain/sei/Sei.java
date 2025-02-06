@@ -1,7 +1,7 @@
-package com.gerencimentodeprocessos.domain.sei;
+package com.gerenciamentodeprocessos.domain.sei;
 
-import com.gerencimentodeprocessos.domain.user.User;
-import com.gerencimentodeprocessos.dtos.SeiDTO;
+import com.gerenciamentodeprocessos.domain.user.User;
+import com.gerenciamentodeprocessos.dtos.SeiDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +13,7 @@ public class Sei {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private Long numberSei;
+    private String numberSei;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -22,7 +22,7 @@ public class Sei {
 
     }
 
-    public Sei(String id, Long numberSei,User user){
+    public Sei(String id, String numberSei, User user){
         this.id = id;
         this.numberSei = numberSei;
         this.user=user;
@@ -42,11 +42,11 @@ public class Sei {
         this.id = id;
     }
 
-    public Long getNumberSei() {
+    public String getNumberSei() {
         return numberSei;
     }
 
-    public void setNumberSei(Long numberSei) {
+    public void setNumberSei(String numberSei) {
         this.numberSei = numberSei;
     }
 
