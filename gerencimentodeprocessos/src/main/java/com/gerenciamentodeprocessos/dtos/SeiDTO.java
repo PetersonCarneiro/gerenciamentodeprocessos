@@ -15,7 +15,10 @@ public record SeiDTO (String id,
                       String descriptionCnae,
                       String object,
                       String numberSei,
-                      User user){
+                      User user
+
+
+){
 
 
 }

@@ -1,5 +1,6 @@
 package com.gerenciamentodeprocessos.domain.sei;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gerenciamentodeprocessos.domain.item.Item;
 import com.gerenciamentodeprocessos.domain.user.User;
 import com.gerenciamentodeprocessos.dtos.SeiDTO;
@@ -34,14 +35,15 @@ public class Sei {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(mappedBy = "sei",cascade = CascadeType.ALL)
-    private List<Item> Item = new ArrayList<>();
+    @JsonManagedReference
+    private List<Item> items = new ArrayList<>();
 
     public Sei(){
 
     }
 
-    public Sei(List<Item> item) {
-        Item = item;
+    public Sei(List<Item> items) {
+        items = items;
     }
 
     public Sei(String id,
@@ -57,7 +59,7 @@ public class Sei {
                String object,
                String numberSei,
                User user,
-               List<Item> item
+               List<Item> items
                ) {
         this.id = id;
         this.cod = cod;
@@ -72,7 +74,7 @@ public class Sei {
         this.object = object;
         this.numberSei = numberSei;
         this.user = user;
-        this.Item = item;
+        this.items = items;
     }
 
     public Sei(SeiDTO seiDTO){
@@ -195,11 +197,11 @@ public class Sei {
         this.user = user;
     }
 
-    public List<Item> getItem() {
-        return Item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItem(List<Item> item) {
-        Item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
