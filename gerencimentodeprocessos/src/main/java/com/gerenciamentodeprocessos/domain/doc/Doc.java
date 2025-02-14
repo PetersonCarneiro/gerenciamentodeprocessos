@@ -1,21 +1,19 @@
-package com.gerenciamentodeprocessos.domain.sei;
+package com.gerenciamentodeprocessos.domain.doc;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gerenciamentodeprocessos.domain.item.Item;
 import com.gerenciamentodeprocessos.domain.user.User;
-import com.gerenciamentodeprocessos.dtos.SeiDTO;
+import com.gerenciamentodeprocessos.dtos.DocDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "seis")
-@Table(name = "seis")
+@Entity(name = "docs")
+@Table(name = "docs")
 @EqualsAndHashCode(of = "id")
-public class Sei {
+public class Doc {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -34,19 +32,15 @@ public class Sei {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "sei",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doc",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Item> items = new ArrayList<>();
 
-    public Sei(){
+    public Doc(){
 
     }
 
-    public Sei(List<Item> items) {
-        items = items;
-    }
-
-    public Sei(String id,
+    public Doc(String id,
                Integer cod,
                String competentUnit,
                String requestingUnit,
@@ -77,21 +71,24 @@ public class Sei {
         this.items = items;
     }
 
-    public Sei(SeiDTO seiDTO){
-        this.id = seiDTO.id();
-        this.cod = seiDTO.cod();
-        this.competentUnit = seiDTO.competentUnit();
-        this.requestingUnit = seiDTO.requestingUnit();
-        this.investiment = seiDTO.investiment();
-        this.codPdm = seiDTO.codPdm();
-        this.catmat = seiDTO.catmat();
-        this.catser = seiDTO.catser();
-        this.codSubClassCnae = seiDTO.codSubClassCnae();
-        this.descriptionCnae = seiDTO.descriptionCnae();
-        this.object = seiDTO.object();
-        this.numberSei = seiDTO.numberSei();
-        this.user = seiDTO.user();
+    public Doc(DocDTO docDTO){
+        this.id = docDTO.id();
+        this.cod = docDTO.cod();
+        this.competentUnit = docDTO.competentUnit();
+        this.requestingUnit = docDTO.requestingUnit();
+        this.investiment = docDTO.investiment();
+        this.codPdm = docDTO.codPdm();
+        this.catmat = docDTO.catmat();
+        this.catser = docDTO.catser();
+        this.codSubClassCnae = docDTO.codSubClassCnae();
+        this.descriptionCnae = docDTO.descriptionCnae();
+        this.object = docDTO.object();
+        this.numberSei = docDTO.numberSei();
+        this.user = docDTO.user();
+        this.items = docDTO.item();
     }
+
+
 
     public String getId() {
         return id;
