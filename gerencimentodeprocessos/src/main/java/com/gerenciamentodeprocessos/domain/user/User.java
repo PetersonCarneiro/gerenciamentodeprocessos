@@ -1,7 +1,7 @@
 package com.gerenciamentodeprocessos.domain.user;
 
-import com.gerenciamentodeprocessos.domain.sei.Sei;
-import com.gerenciamentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.domain.doc.Doc;
+import com.gerenciamentodeprocessos.dtos.UserRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,7 +24,7 @@ public class User {
     private UserType userType;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Sei> seis = new ArrayList<>();
+    private List<Doc> docs = new ArrayList<>();
 
     public User(){
 
@@ -39,12 +39,12 @@ public class User {
         this.userType = userType;
     }
 
-    public User(UserDTO userDTO){
-        this.firstName = userDTO.firstName();
-        this.lastName = userDTO.lastName();
-        this.login = userDTO.login();
-        this.password = userDTO.password();
-        this.userType =userDTO.userType();
+    public User(UserRequestDTO userRequestDTO){
+        this.firstName = userRequestDTO.firstName();
+        this.lastName = userRequestDTO.lastName();
+        this.login = userRequestDTO.login();
+        this.password = userRequestDTO.password();
+        this.userType = userRequestDTO.userType();
     }
 
     public String getId() {

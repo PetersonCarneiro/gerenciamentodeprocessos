@@ -1,85 +1,62 @@
 package com.gerenciamentodeprocessos.service;
 
 import com.gerenciamentodeprocessos.domain.user.User;
-import com.gerenciamentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.dtos.UserRequestDTO;
+import com.gerenciamentodeprocessos.dtos.UserResponseDTO;
+import com.gerenciamentodeprocessos.mapper.UserMapper;
 import com.gerenciamentodeprocessos.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
+    private UserMapper userMapper;
+
+    public UserService(UserRepository repository, UserMapper mapper){
+        this.userRepository = repository;
+        this.userMapper = mapper;
+    }
 
     //CRUD
-
-    public UserDTO saveUser(UserDTO userDTO){
-        User user = new User(userDTO);
-        User newUser = userRepository.save(user);
-        return new UserDTO(
-                newUser.getId(),
-                newUser.getFirstName(),
-                newUser.getLastName(),
-                newUser.getLogin(),
-                newUser.getPassword(),
-                newUser.getUserType()
-        );
+    public UserResponseDTO saveUser(UserRequestDTO userRequestDTO){
+        User user = userMapper.toEntity(userRequestDTO);
+        return userMapper.toDTO(userRepository.save(user));
     }
 
-    public List<UserDTO> listUser(){
-        return userRepository.findAll().stream().map(user ->
-                new UserDTO(
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getLogin(),
-                        user.getPassword(),
-                        user.getUserType()
-                )
-        ).toList();
+    public List<UserResponseDTO> listAll(){
+        return userRepository.findAll().stream()
+                .map(userMapper::toDTO).toList();
     }
 
-    public Optional<UserDTO> findByIdUser(String id){
-        return userRepository.findById(id).map(user ->
-                new UserDTO(
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getLogin(),
-                        user.getPassword(),
-                        user.getUserType())
-        );
+    public UserResponseDTO findByIdUser(String id){
+        return userRepository.findById(id)
+                .map(userMapper::toDTO)
+                .orElseThrow(()-> new RuntimeException("User not found"));
     }
 
-    public UserDTO updateUser(String id, UserDTO userDTO){
-        return userRepository.findById(id).map(user -> {
-            user.setFirstName(userDTO.firstName());
-            user.setLastName(userDTO.lastName());
-            user.setLogin(userDTO.login());
-            user.setPassword(userDTO.password());
-            user.setUserType(userDTO.userType());
-            User updateUser = userRepository.save(user);
-            return new UserDTO(
-                    updateUser.getId(),
-                    updateUser.getFirstName(),
-                    updateUser.getLastName(),
-                    updateUser.getLogin(),
-                    updateUser.getPassword(),
-                    updateUser.getUserType()
-            );
-        }).orElseThrow(()-> new RuntimeException("User not found"));
+    public UserResponseDTO updateUser(String id, UserRequestDTO userRequestDTO){
+
+        User user = userRepository
+                .findById(id)
+                .orElseThrow(()-> new RuntimeException("User not found"));
+
+        user.setFirstName(userRequestDTO.firstName());
+        user.setLastName(userRequestDTO.lastName());
+        user.setLogin(userRequestDTO.login());
+        user.setPassword(userRequestDTO.password());
+        user.setUserType(userRequestDTO.userType());
+
+        return userMapper.toDTO(userRepository.save(user));
+
     }
 
     public void deleteUser(String id) {
         userRepository.deleteById(id);
-
     }
-
-    //Regras de negocio
-
-
 }

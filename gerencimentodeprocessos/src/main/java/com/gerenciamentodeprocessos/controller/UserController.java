@@ -1,6 +1,7 @@
 package com.gerenciamentodeprocessos.controller;
 
-import com.gerenciamentodeprocessos.dtos.UserDTO;
+import com.gerenciamentodeprocessos.dtos.UserRequestDTO;
+import com.gerenciamentodeprocessos.dtos.UserResponseDTO;
 import com.gerenciamentodeprocessos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,30 +10,30 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping
-    public UserDTO newUser(@RequestBody UserDTO userDTO){
-        return userService.saveUser(userDTO);
+    public UserResponseDTO newUser(@RequestBody UserRequestDTO userRequestDTO){
+        return userService.saveUser(userRequestDTO);
     }
 
     @GetMapping
-    public List<UserDTO> listUser(){
-        return userService.listUser();
+    public List<UserResponseDTO> listUser(){
+        return userService.listAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<UserDTO> findByUserId(@PathVariable String id){
+    public UserResponseDTO findByUserId(@PathVariable String id){
         return userService.findByIdUser(id);
     }
 
     @PutMapping("/{id}")
-    public UserDTO updateUser(@PathVariable String id, @RequestBody UserDTO userDTO){
-        return  userService.updateUser(id,userDTO);
+    public UserResponseDTO updateUser(@PathVariable String id, @RequestBody UserRequestDTO userRequestDTO){
+        return  userService.updateUser(id, userRequestDTO);
     }
 
     @DeleteMapping("/{id}")
