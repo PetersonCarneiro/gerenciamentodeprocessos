@@ -2,7 +2,7 @@ package com.gerenciamentodeprocessos.domain.item;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.gerenciamentodeprocessos.domain.sei.Sei;
+import com.gerenciamentodeprocessos.domain.doc.Doc;
 import com.gerenciamentodeprocessos.dtos.ItemDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,36 +37,52 @@ public class Item {
     @ManyToOne()
     @JoinColumn(name = "item_id")
     @JsonBackReference
-    private Sei sei;
+    private Doc doc;
 
     public Item(){
 
     }
 
-
-    public Item(ItemDTO itemDTO) {
-        this.id = itemDTO.id();
-        this.item = itemDTO.item();
-        this.quantityPurchased = itemDTO.quantityPurchased();
-        this.justification = itemDTO.justification();
-        this.budgetHeading = itemDTO.budgetHeading();
-        this.priorityDegree = itemDTO.priorityDegree();
-        this.expectedContractStart = itemDTO.expectedContractStart();
-        this.expectedContractTermination = itemDTO.expectedContractTermination();
-        this.remainingDeadline = itemDTO.remainingDeadline();
-        this.totalDurationContract = itemDTO.totalDurationContract();
-        this.estimatedValueForTheYear = itemDTO.estimatedValueForTheYear();
-        this.estimatedContractValue = itemDTO.estimatedContractValue();
-        this.type = itemDTO.type();
-        this.contractNumber = itemDTO.contractNumber();
-        this.contractingMode = itemDTO.contractingMode();
-        this.termsOfReference = itemDTO.termsOfReference();
-        this.stateOfTheProcess = itemDTO.stateOfTheProcess();
-        this.sustainabilityCriteria = itemDTO.sustainabilityCriteria();
-        this.slp = itemDTO.slp();
-
+    public Item(String id,
+                String item,
+                String quantityPurchased,
+                String justification,
+                String budgetHeading,
+                String priorityDegree,
+                Date expectedContractStart,
+                Date expectedContractTermination,
+                Integer remainingDeadline,
+                Integer totalDurationContract,
+                Double estimatedValueForTheYear,
+                Double estimatedContractValue,
+                String type, Integer contractNumber,
+                String contractingMode,
+                String termsOfReference,
+                String stateOfTheProcess,
+                String sustainabilityCriteria,
+                String slp,
+                Doc doc) {
+        this.id = id;
+        this.item = item;
+        this.quantityPurchased = quantityPurchased;
+        this.justification = justification;
+        this.budgetHeading = budgetHeading;
+        this.priorityDegree = priorityDegree;
+        this.expectedContractStart = expectedContractStart;
+        this.expectedContractTermination = expectedContractTermination;
+        this.remainingDeadline = remainingDeadline;
+        this.totalDurationContract = totalDurationContract;
+        this.estimatedValueForTheYear = estimatedValueForTheYear;
+        this.estimatedContractValue = estimatedContractValue;
+        this.type = type;
+        this.contractNumber = contractNumber;
+        this.contractingMode = contractingMode;
+        this.termsOfReference = termsOfReference;
+        this.stateOfTheProcess = stateOfTheProcess;
+        this.sustainabilityCriteria = sustainabilityCriteria;
+        this.slp = slp;
+        this.doc = doc;
     }
-
 
     public String getId() {
         return id;
@@ -220,11 +236,11 @@ public class Item {
         this.slp = slp;
     }
 
-    public Sei getSei() {
-        return sei;
+    public Doc getDoc() {
+        return doc;
     }
 
-    public void setSei(Sei sei) {
-        this.sei = sei;
+    public void setDoc(Doc doc) {
+        this.doc = doc;
     }
 }

@@ -1,6 +1,6 @@
 package com.gerenciamentodeprocessos.dtos;
 
-import com.gerenciamentodeprocessos.domain.sei.Sei;
+import com.gerenciamentodeprocessos.domain.doc.Doc;
 
 import java.util.Date;
 
@@ -23,6 +23,6 @@ public record ItemDTO(String id,
                       String stateOfTheProcess,
                       String sustainabilityCriteria,
                       String slp,
-                      Sei sei) {
+                      Doc doc) {
 
 }
