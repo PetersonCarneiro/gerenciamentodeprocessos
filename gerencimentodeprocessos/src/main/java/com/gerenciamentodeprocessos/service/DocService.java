@@ -24,7 +24,7 @@ public class DocService {
     }
 
     public DocDTO saveDoc(DocDTO docDTO){
-        Doc doc = new Doc(docDTO);
+        Doc doc = docMapper.toEntity(docDTO);
         return  docMapper.toDTO(docRepository.save(doc));
     }
 

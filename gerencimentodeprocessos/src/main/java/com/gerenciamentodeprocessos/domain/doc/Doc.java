@@ -71,24 +71,6 @@ public class Doc {
         this.items = items;
     }
 
-    public Doc(DocDTO docDTO){
-        this.id = docDTO.id();
-        this.cod = docDTO.cod();
-        this.competentUnit = docDTO.competentUnit();
-        this.requestingUnit = docDTO.requestingUnit();
-        this.investiment = docDTO.investiment();
-        this.codPdm = docDTO.codPdm();
-        this.catmat = docDTO.catmat();
-        this.catser = docDTO.catser();
-        this.codSubClassCnae = docDTO.codSubClassCnae();
-        this.descriptionCnae = docDTO.descriptionCnae();
-        this.object = docDTO.object();
-        this.numberSei = docDTO.numberSei();
-        this.user = docDTO.user();
-        this.items = docDTO.item();
-    }
-
-
 
     public String getId() {
         return id;

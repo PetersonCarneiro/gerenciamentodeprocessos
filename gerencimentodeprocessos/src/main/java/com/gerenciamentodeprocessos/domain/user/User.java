@@ -39,13 +39,6 @@ public class User {
         this.userType = userType;
     }
 
-    public User(UserRequestDTO userRequestDTO){
-        this.firstName = userRequestDTO.firstName();
-        this.lastName = userRequestDTO.lastName();
-        this.login = userRequestDTO.login();
-        this.password = userRequestDTO.password();
-        this.userType = userRequestDTO.userType();
-    }
 
     public String getId() {
         return id;
