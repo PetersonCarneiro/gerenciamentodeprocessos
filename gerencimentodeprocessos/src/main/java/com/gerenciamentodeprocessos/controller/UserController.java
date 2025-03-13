@@ -4,10 +4,11 @@ import com.gerenciamentodeprocessos.dtos.UserRequestDTO;
 import com.gerenciamentodeprocessos.dtos.UserResponseDTO;
 import com.gerenciamentodeprocessos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserResponseDTO findByUserId(@PathVariable String id){
         return userService.findByIdUser(id);
+    }
+
+    @GetMapping("/{login}")
+    public UserResponseDTO findByUserLogin(@PathVariable String login){
+        return  userService.findByLoginUser(login);
     }
 
     @PutMapping("/{id}")
