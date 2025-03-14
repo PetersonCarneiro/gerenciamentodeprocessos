@@ -31,11 +31,6 @@ public class UserController {
         return userService.findByIdUser(id);
     }
 
-    @GetMapping("/{login}")
-    public UserResponseDTO findByUserLogin(@PathVariable String login){
-        return  userService.findByLoginUser(login);
-    }
-
     @PutMapping("/{id}")
     public UserResponseDTO updateUser(@PathVariable String id, @RequestBody UserRequestDTO userRequestDTO){
         return  userService.updateUser(id, userRequestDTO);

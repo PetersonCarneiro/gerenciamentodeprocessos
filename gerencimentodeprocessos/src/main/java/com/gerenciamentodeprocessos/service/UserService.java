@@ -40,12 +40,6 @@ public class UserService {
                 .orElseThrow(()-> new RuntimeException("User not found"));
     }
 
-    public UserResponseDTO findByLoginUser(String login){
-        return  userRepository.findByLogin(login)
-                .map(userMapper::toDTO)
-                .orElseThrow(()-> new RuntimeException("Login not found"));
-    }
-
     public UserResponseDTO updateUser(String id, UserRequestDTO userRequestDTO){
         User user = userRepository
                 .findById(id)
