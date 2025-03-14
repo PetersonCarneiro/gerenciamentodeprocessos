@@ -3,7 +3,9 @@ package com.gerenciamentodeprocessos.controller;
 import com.gerenciamentodeprocessos.domain.user.User;
 import com.gerenciamentodeprocessos.dtos.AuthenticationDTO;
 
+import com.gerenciamentodeprocessos.dtos.LoginResponseDTO;
 import com.gerenciamentodeprocessos.dtos.RegisterDTO;
+import com.gerenciamentodeprocessos.infra.security.TokenService;
 import com.gerenciamentodeprocessos.repositories.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,17 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login (@NotNull @RequestBody AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return  ResponseEntity.ok().build();
+
+        var token = tokenService.generateToken((User)auth.getPrincipal());
+
+        return  ResponseEntity.ok(new LoginResponseDTO(token));
 
     }
 
