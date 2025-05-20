@@ -2,7 +2,7 @@ package com.gerenciamentodeprocessos.controller;
 
 import com.gerenciamentodeprocessos.dtos.DocDTO;
 import com.gerenciamentodeprocessos.service.DocService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/document")
+@CrossOrigin(origins = "*")
 public class DocController {
 
 
@@ -33,10 +34,13 @@ public class DocController {
     public Optional<DocDTO> findById(@PathVariable String id){
         return docService.findById(id);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public DocDTO updateSei(@PathVariable String id, @RequestBody DocDTO docDto){
         return docService.updateDoc(id, docDto);
     }
+
     @DeleteMapping("/{id}")
     public void deleteSei(@PathVariable String id){
         docService.deleteDoc(id);

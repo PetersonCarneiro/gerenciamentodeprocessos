@@ -3,7 +3,6 @@ package com.gerenciamentodeprocessos.domain.doc;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gerenciamentodeprocessos.domain.item.Item;
 import com.gerenciamentodeprocessos.domain.user.User;
-import com.gerenciamentodeprocessos.dtos.DocDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
@@ -35,9 +34,36 @@ public class Doc {
     @OneToMany(mappedBy = "doc",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Item> items = new ArrayList<>();
+    @Version
+    private Integer version;
 
     public Doc(){
+    }
 
+    public Doc(String id,
+               Integer cod,
+               String competentUnit,
+               String requestingUnit,
+               Double investiment,
+               Integer codPdm,
+               Integer catmat,
+               Integer catser,
+               Integer codSubClassCnae,
+               String descriptionCnae,
+               String object,
+               String numberSei) {
+        this.id = id;
+        this.cod = cod;
+        this.competentUnit = competentUnit;
+        this.requestingUnit = requestingUnit;
+        this.investiment = investiment;
+        this.codPdm = codPdm;
+        this.catmat = catmat;
+        this.catser = catser;
+        this.codSubClassCnae = codSubClassCnae;
+        this.descriptionCnae = descriptionCnae;
+        this.object = object;
+        this.numberSei = numberSei;
     }
 
     public Doc(String id,
@@ -53,8 +79,7 @@ public class Doc {
                String object,
                String numberSei,
                User user,
-               List<Item> items
-               ) {
+               List<Item> item) {
         this.id = id;
         this.cod = cod;
         this.competentUnit = competentUnit;
@@ -68,9 +93,8 @@ public class Doc {
         this.object = object;
         this.numberSei = numberSei;
         this.user = user;
-        this.items = items;
+        this.items = item;
     }
-
 
     public String getId() {
         return id;
@@ -182,5 +206,13 @@ public class Doc {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

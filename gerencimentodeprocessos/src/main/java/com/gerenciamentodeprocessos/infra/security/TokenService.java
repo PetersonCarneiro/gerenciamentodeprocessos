@@ -3,7 +3,9 @@ package com.gerenciamentodeprocessos.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.gerenciamentodeprocessos.domain.user.User;
+import com.gerenciamentodeprocessos.domain.user.UserType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +21,17 @@ public class TokenService {
     public String generateToken(User user){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
+            String role = user.getUserType().toString();
+
             String token = JWT.create()
                     .withIssuer("auth-api")
-                    .withSubject(user.getLastName())
+                    .withSubject(user.getLogin())
+                    .withClaim("role",role)
                     .withExpiresAt(getExpirationDate())
                     .sign(algorithm);
             return token;
         }catch (JWTCreationException exception){
-    throw new RuntimeException("Error while geneating token", exception);
+    throw new RuntimeException("Error while generating token", exception);
         }
     }
 
@@ -34,15 +39,14 @@ public class TokenService {
 
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            JWT.require(algorithm)
+            return JWT.require(algorithm)
                     .withIssuer("auth-api")
                     .build()
                     .verify(token)
                     .getSubject();
-            return token;
 
         }catch (JWTCreationException exception){
-            return "";
+            throw new RuntimeException("Token", exception);
         }
     }
 
@@ -52,4 +56,13 @@ public class TokenService {
                 .atZone(ZoneId.of("America/Sao_Paulo"))
                 .toInstant();
     }
+
+    public DecodedJWT decodeToken(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        return JWT.require(algorithm)
+                .withIssuer("auth-api")
+                .build()
+                .verify(token);
+    }
+
 }

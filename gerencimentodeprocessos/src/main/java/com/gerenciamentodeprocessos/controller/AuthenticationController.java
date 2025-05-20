@@ -1,6 +1,7 @@
 package com.gerenciamentodeprocessos.controller;
 
 import com.gerenciamentodeprocessos.domain.user.User;
+import com.gerenciamentodeprocessos.domain.user.UserType;
 import com.gerenciamentodeprocessos.dtos.AuthenticationDTO;
 
 import com.gerenciamentodeprocessos.dtos.LoginResponseDTO;
@@ -36,7 +37,9 @@ public class AuthenticationController {
 
         var token = tokenService.generateToken((User)auth.getPrincipal());
 
-        return  ResponseEntity.ok(new LoginResponseDTO(token));
+        User user = (User) auth.getPrincipal();
+
+        return  ResponseEntity.ok(new LoginResponseDTO(token,user.getId()));
 
     }
 
@@ -53,5 +56,4 @@ public class AuthenticationController {
 
         return ResponseEntity.ok().build();
     }
-
 }

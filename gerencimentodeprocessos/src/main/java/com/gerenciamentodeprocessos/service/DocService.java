@@ -4,13 +4,10 @@ import com.gerenciamentodeprocessos.domain.doc.Doc;
 import com.gerenciamentodeprocessos.dtos.DocDTO;
 import com.gerenciamentodeprocessos.mapper.DocMapper;
 import com.gerenciamentodeprocessos.repositories.DocRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class DocService {
@@ -50,8 +47,8 @@ public class DocService {
         doc.setDescriptionCnae(docDTO.descriptionCnae());
         doc.setObject(docDTO.object());
         doc.setNumberSei(docDTO.numberSei());
-        doc.setUser(docDTO.user());
-        doc.setItems(docDTO.item());
+        //doc.setUser(docDTO.user());
+        //doc.setItems(docDTO.item());
 
         return docMapper.toDTO(docRepository.save(doc));
     }

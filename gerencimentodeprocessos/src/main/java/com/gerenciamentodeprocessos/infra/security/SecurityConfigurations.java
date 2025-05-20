@@ -23,6 +23,7 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigurations {
+
     @Autowired
     SecurityFilter securityFilter;
 
@@ -36,6 +37,9 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/document").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/item").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/document/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
