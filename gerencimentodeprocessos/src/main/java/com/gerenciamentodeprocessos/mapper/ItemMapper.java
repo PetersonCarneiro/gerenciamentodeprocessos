@@ -27,7 +27,7 @@ public class ItemMapper {
                 dto.stateOfTheProcess(),
                 dto.sustainabilityCriteria(),
                 dto.slp(),
-                dto.doc());
+                null);
     }
 
     public ItemDTO toDTO(Item item){
@@ -51,7 +51,7 @@ public class ItemMapper {
                 item.getStateOfTheProcess(),
                 item.getSustainabilityCriteria(),
                 item.getSlp(),
-                item.getDoc()
+                item.getDoc() != null ? item.getDoc().getId() : null // Retorna apenas o ID do documento
         );
     }
 }

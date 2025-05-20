@@ -51,7 +51,8 @@ public class Doc {
                Integer codSubClassCnae,
                String descriptionCnae,
                String object,
-               String numberSei) {
+               String numberSei,
+               List<Item> item) {
         this.id = id;
         this.cod = cod;
         this.competentUnit = competentUnit;
@@ -64,6 +65,7 @@ public class Doc {
         this.descriptionCnae = descriptionCnae;
         this.object = object;
         this.numberSei = numberSei;
+        this.items = item;
     }
 
     public Doc(String id,

@@ -1,5 +1,9 @@
 package com.gerenciamentodeprocessos.dtos;
 
+import com.gerenciamentodeprocessos.domain.item.Item;
+
+import java.util.List;
+
 public record DocDTO(String id,
                      Integer cod,
                      String competentUnit,
@@ -11,8 +15,8 @@ public record DocDTO(String id,
                      Integer codSubClassCnae,
                      String descriptionCnae,
                      String object,
-                     String numberSei
+                     String numberSei,
                      //User user,
-                     //List<Item> item
-) {
+                     List<Item>item
+                     ) {
 }

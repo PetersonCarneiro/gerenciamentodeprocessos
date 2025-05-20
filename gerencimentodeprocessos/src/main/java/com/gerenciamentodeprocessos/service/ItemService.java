@@ -26,8 +26,12 @@ public class ItemService {
     }
 
 
-    public ItemDTO saveItem(String id, ItemDTO itemDTO) {
-        Doc doc = docRepository.findById(id)
+    public ItemDTO saveItem(ItemDTO itemDTO) {
+        if (itemDTO.documentId()== null || itemDTO.documentId().isEmpty()) {
+            throw new RuntimeException("Document ID is required");
+        }
+
+        Doc doc = docRepository.findById(itemDTO.documentId())
                 .orElseThrow(() -> new RuntimeException("Document not found"));
 
         Item item = itemMapper.toEntity(itemDTO);
@@ -35,6 +39,7 @@ public class ItemService {
 
         return itemMapper.toDTO(itemRepository.save(item));
     }
+
 
 
     public List<ItemDTO> listItem() {

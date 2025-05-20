@@ -20,9 +20,9 @@ public class DocMapper {
                 docDTO.codSubClassCnae(),
                 docDTO.descriptionCnae(),
                 docDTO.object(),
-                docDTO.numberSei()
+                docDTO.numberSei(),
                 //docDTO.user(),
-                //docDTO.item()
+                docDTO.item()
         );
     }
 
@@ -39,9 +39,9 @@ public class DocMapper {
                 doc.getCodSubClassCnae(),
                 doc.getDescriptionCnae(),
                 doc.getObject(),
-                doc.getNumberSei()
+                doc.getNumberSei(),
                 //doc.getUser(),
-                //doc.getItems()
+                doc.getItems()
         );
 
     }

@@ -1,5 +1,7 @@
 package com.gerenciamentodeprocessos.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gerenciamentodeprocessos.domain.doc.Doc;
 import com.gerenciamentodeprocessos.dtos.UserRequestDTO;
 import jakarta.persistence.*;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "users")
 @Table(name = "users")
@@ -18,7 +21,7 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
@@ -34,9 +37,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Doc> docs = new ArrayList<>();
 
-    public User(){
+    public User(){}
 
-    }
 
     public User(String login, String password, UserType userType){
         this.login = login;
@@ -52,14 +54,27 @@ public class User implements UserDetails {
         this.userType = userType;
     }
 
+    @JsonCreator
+    public User(@JsonProperty("id") String id,
+                @JsonProperty("firstName") String firstName,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("login") String login,
+                @JsonProperty("password") String password,
+                @JsonProperty("userType") UserType userType) {
+        this.id = UUID.fromString(id); // Converte o ID String para UUID
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.userType = userType;
+    }
 
 
-
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -102,10 +117,14 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.userType == UserType.ADMIN) {
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("Role_USER"));
-        }else{
+            return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("Role_USER")
+            );
+        }else if(this.userType == UserType.COMMUN){
             return  List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
+        return null;
     }
 
     public String getPassword() {

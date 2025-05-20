@@ -38,6 +38,7 @@ public class DocService {
                 .orElseThrow(()-> new RuntimeException("Document not found"));
 
         doc.setCod(docDTO.cod());
+        doc.setCompetentUnit(docDTO.competentUnit());
         doc.setRequestingUnit(docDTO.requestingUnit());
         doc.setInvestiment(docDTO.investiment());
         doc.setCodPdm(docDTO.codPdm());

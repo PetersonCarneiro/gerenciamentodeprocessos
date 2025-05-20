@@ -23,6 +23,6 @@ public record ItemDTO(String id,
                       String stateOfTheProcess,
                       String sustainabilityCriteria,
                       String slp,
-                      Doc doc) {
+                      String documentId) {
 
 }

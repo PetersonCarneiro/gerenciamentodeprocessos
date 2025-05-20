@@ -17,9 +17,9 @@ public class itemController {
     private ItemService itemService;
 
     //Salvar
-    @PostMapping()
-    public ResponseEntity<ItemDTO> createItem(@PathVariable String docId, @RequestBody ItemDTO itemDTO) {
-        ItemDTO saveItem = itemService.saveItem(docId, itemDTO);
+    @PostMapping
+    public ResponseEntity<ItemDTO> createItem( @RequestBody ItemDTO itemDTO) {
+        ItemDTO saveItem = itemService.saveItem(itemDTO);
         return ResponseEntity.status(201).body(saveItem);
     }
 
@@ -51,5 +51,7 @@ public class itemController {
     public void deleteItem(@PathVariable String id) {
         itemService.deleteItem(id);
     }
+
+
 
 }
