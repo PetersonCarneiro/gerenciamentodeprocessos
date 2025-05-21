@@ -38,7 +38,7 @@ public class itemController {
     }
 
     //Altera o item
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{docId}")
     public ResponseEntity<ItemDTO> updateItem(@PathVariable String id, @PathVariable String docId, @RequestBody ItemDTO itemDTO) {
 
         ItemDTO updatedItem = itemService.updateItem(id, docId, itemDTO);
