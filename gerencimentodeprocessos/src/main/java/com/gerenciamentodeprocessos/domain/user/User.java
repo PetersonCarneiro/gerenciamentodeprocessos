@@ -119,7 +119,7 @@ public class User implements UserDetails {
         if (this.userType == UserType.ADMIN) {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("Role_USER")
+                    new SimpleGrantedAuthority("ROLE_USER")
             );
         }else if(this.userType == UserType.COMMUN){
             return  List.of(new SimpleGrantedAuthority("ROLE_USER"));
