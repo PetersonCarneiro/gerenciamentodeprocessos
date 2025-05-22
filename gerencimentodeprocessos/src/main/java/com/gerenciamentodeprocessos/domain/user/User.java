@@ -39,13 +39,6 @@ public class User implements UserDetails {
 
     public User(){}
 
-
-    public User(String login, String password, UserType userType){
-        this.login = login;
-        this.password = login;
-        this.userType = userType;
-    }
-
     public User (String firstName, String lastName, String login, String password, UserType userType) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -121,7 +114,7 @@ public class User implements UserDetails {
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_USER")
             );
-        }else if(this.userType == UserType.COMMUN){
+        }else if(this.userType == UserType.USER){
             return  List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
         return null;
